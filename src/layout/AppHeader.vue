@@ -23,23 +23,31 @@
                     <router-link to="/register" class="dropdown-item">Register</router-link>
                 </base-dropdown> -->
         <li class="nav-item">
-          <router-link to="/#pricing" class="nav-link nav-link-icon"
+          <router-link to="/?to=pricing" class="nav-link nav-link-icon" v-if="this.$route.path !== '/'"
             >Pricing</router-link
           >
+          <router-link to="/#pricing" class="nav-link nav-link-icon" v-else>Pricing</router-link
+          >
         </li>
         <li class="nav-item">
-          <router-link to="/#features" class="nav-link nav-link-icon"
+          <router-link to="/?to=features" class="nav-link nav-link-icon" v-if="this.$route.path !== '/'"
             >About Us</router-link
           >
-        </li>
-        <li class="nav-item">
-          <router-link to="/#FAQ" class="nav-link nav-link-icon"
-            >FAQ</router-link
+          <router-link to="/#features" class="nav-link nav-link-icon" v-else>About Us</router-link
           >
         </li>
         <li class="nav-item">
-          <router-link to="/#contact" class="nav-link nav-link-icon"
+          <router-link to="/?to=FAQ" class="nav-link nav-link-icon" v-if="this.$route.path !== '/'"
+            >FAQ</router-link
+          >
+          <router-link to="/#FAQ" class="nav-link nav-link-icon" v-else>FAQ</router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link to="/?to=contact" class="nav-link nav-link-icon" v-if="this.$route.path !== '/'"
             >Contact</router-link
+          >
+          <router-link to="/#contact" class="nav-link nav-link-icon" v-else>Contact</router-link
           >
         </li>
       </ul>
@@ -51,7 +59,7 @@
           </router-link>
         </li>
       </ul>
-      <ul class="navbar-nav align-items-lg-center ml-lg-auto" v-if="!loggedIn">
+      <ul class="navbar-nav align-items-lg-center ml-lg-auto navbar-nav-hover" v-if="!loggedIn">
         <li class="nav-item d-none d-lg-block ml-lg-4">
           <router-link to="/login" class="nav-link nav-link-icon">
             <span class="btn-inner--icon"></span>
@@ -72,7 +80,13 @@
             <span class="nav-link-inner--text">Profile</span>
           </router-link>
         </li>
-        <li class="nav-item d-none d-lg-block ml-lg-4">
+         <li class="nav-item d-none d-lg-block ml-lg-2">
+          <router-link to="/how-to" class="nav-link nav-link-icon">
+            <span class="btn-inner--icon"></span>
+            <span class="nav-link-inner--text">HowTo</span>
+          </router-link>
+        </li>
+        <li class="nav-item d-none d-lg-block ml-lg-2">
           <router-link to="/check-message" class="btn btn-primary btn-neutral">
             <span class="btn-inner--icon"></span>
             <span class="nav-link-inner--text">Check message</span>

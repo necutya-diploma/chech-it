@@ -15,6 +15,17 @@
       <div class="container">
         <card shadow class="card-profile mt--500" no-body>
           <div class="px-4">
+            <base-alert
+              type="danger"
+              icon="ni ni-support-16"
+              dismissible
+              v-if="this.message"
+              class="mt-2"
+            >
+              <span slot="text"
+                ><strong>{{ this.message }}</strong></span
+              >
+            </base-alert>
             <div class="mt-3 py-5 text-center">
               <h2 class="display-3">Check messages</h2>
               <p class="lead text-muted">
@@ -35,11 +46,8 @@
                       v-model="check_message_data.message"
                       name="message"
                     ></textarea>
-                    <small
-                      v-if="errors.has('message')"
-                      class="text-danger"
-                    >
-                      {{errors.first('message')}}
+                    <small v-if="errors.has('message')" class="text-danger">
+                      {{ errors.first("message") }}
                     </small>
                   </div>
                   <div class="form-group">
@@ -81,7 +89,7 @@
                   :thickness="20"
                   has-legend
                   legend-placement="top"
-                  :sections="sections"
+                  :sections="sections()"
                   :total="100"
                   :start-angle="0"
                   :auto-adjust-text-size="true"
@@ -99,9 +107,7 @@
                   </span>
                 </div>
                 <div class="col" style="color: #28a745" v-else>
-                  <div class="display-3">
-                    This message is genrated by person
-                  </div>
+                  <div class="display-3">This message is written by person</div>
                   <span style="font-size: 150px">
                     <i class="fa fa-user" aria-hidden="true"></i>
                   </span>
@@ -134,7 +140,16 @@ export default {
       },
     };
   },
-  computed: {
+  watch: {
+    user: {
+      check_result(newValue) {
+        sections();
+      },
+      deep: true,
+    },
+  },
+
+  methods: {
     sections() {
       const genPercent = this.check_result.generated_percent;
       return [
@@ -144,15 +159,12 @@ export default {
           color: "#8965e0",
         },
         {
-          label: `Written by person: ${100 - genPercent}%`,
+          label: `Written by person: ${(100 - genPercent).toFixed(2)}%`,
           value: 100 - genPercent,
           color: "#1da1f2",
         },
       ];
     },
-  },
-
-  methods: {
     checkMessage() {
       this.$validator.validateAll().then((isValid) => {
         if (this.check_message_data.message) {

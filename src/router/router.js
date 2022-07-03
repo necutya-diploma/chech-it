@@ -13,6 +13,7 @@ import Profile from "../views/Profile.vue";
 import Check from "../views/Check.vue";
 import UpdatePlan from "../views/UpdatePlan.vue";
 import UsersReport from "../views/UsersReport.vue";
+import HowTo from "../views/HowTo.vue";
 
 import auth from './middlewares/auth'
 import admin from './middlewares/admin'
@@ -120,6 +121,20 @@ const router = new Router({
       components: {
         header: AppHeader,
         default: UpdatePlan,
+        footer: AppFooter
+      },
+      meta: {
+        middleware: [
+          auth
+        ]
+      }
+    },
+    {
+      path: "/how-to",
+      name: "how-to",
+      components: {
+        header: AppHeader,
+        default: HowTo,
         footer: AppFooter
       },
       meta: {

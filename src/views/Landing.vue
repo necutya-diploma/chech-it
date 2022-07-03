@@ -398,6 +398,9 @@ export default {
     this.feedback.user_id = this.user_id;
     this.feedback.email = this.email;
     this.feedback.username = this.user_name;
+    if (this.$route.query.to) {
+        document.getElementById(this.$route.query.to).scrollIntoView();
+    }
   },
 
   watch: {

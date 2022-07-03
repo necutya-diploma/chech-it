@@ -160,7 +160,7 @@
                   >
                   <small class="form-text text-muted"
                     >You can find more information about external usage
-                    <router-link to="/">here</router-link>.</small
+                    <router-link to="/how-to">here</router-link>.</small
                   >
                 </div>
                 <div class="row justify-content-center">
